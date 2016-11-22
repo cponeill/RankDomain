@@ -1,0 +1,13 @@
+basePath: /
+host: '[fcce:a977:eee3:6ebf:1f21:0000:0000:0001]:7002'
+info:
+  contact: {email: casey.oneill@gmail.com, name: cponeill}
+  description: Get the rank of a domain or go to https://www.request402.com for more
+    endpoints.
+  title: Domain Rank
+  x-21-app-image: https://cdn.filepicker.io/api/file/4gaElqaTRHVKZLfx161g
+  x-21-category: utilities
+  x-21-quick-buy: 21 buy http://[fcce:a977:eee3:6ebf:1f21:0000:0000:0001]:7002/domain_rank?url=example.com
+  x-21-total-price: {max: 750, min: 750}
+schemes: [http]
+x-21-manifest-path: /manifest
