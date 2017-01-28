@@ -1,3 +1,5 @@
+# TO DO: Add comments before each function to describe what is happening. 
+
 #!/usr/bin/env python3
 # Adding in unittests RankDomain microservice.
 import os
@@ -17,9 +19,11 @@ class RankDomainTestCase(unittest.TestCase):
         response = self.get('/domain_rank')
         self.assertEqual(response.status_code, 402)
 
-    # Will add in 200 endpoint tomorrow
-    # @mock.patch('two1.bitserv.flask.decorator.Payment.contains_payment',
-              # return_value=True)
+    @mock.patch('two1.bitserv.flask.decorator.Payment.contains_payment',
+                 return_value=True)
+    def test_pay_success(self, *args):
+        response = self.get('/domain_rank?url=google.com')
+        self.assertEqual(response.status_code, 200)
 
 if __name__ == '__main__':
     unittest.main()
