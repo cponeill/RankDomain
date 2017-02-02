@@ -1,18 +1,4 @@
-"""
-Copyright (c) 2016-2017 Blockshare Technologies, LLC.
-  ____  _            _     ____  _                      ___ ___
- | __ )| | ___   ___| | __/ ___|| |__   __ _ _ __ ___  |_ _/ _ \
- |  _ \| |/ _ \ / __| |/ /\___ \| '_ \ / _` | '__/ _ \  | | | | |
- | |_) | | (_) | (__|   <  ___) | | | | (_| | | |  __/_ | | |_| |
- |____/|_|\___/ \___|_|\_\|____/|_| |_|\__,_|_|  \___(_)___\___/
-"""
-
-__author__ = "cponeill"
-__version__ = "1.0"
-__maintainer__ = "cponeill"
-__email__ = "cponeill@blockshare.io"
-
-
+#! /usr/bin/env python3
 import requests
 import json
 
@@ -32,7 +18,8 @@ def get_alexa_xml(args):
     Abstract function that pulls in xml data from url
     and returns that data.
     """
-    response = requests.get('http://data.alexa.com/data?cli=10&url=http://' + args)
+    url = "http://data.alexa.com/data?cli=10&url=http://"
+    response = requests.get(url + args)
     tree = ElementTree.fromstring(response.text)
     return tree
 
@@ -43,10 +30,11 @@ def get_rank():
     """
     Input: Specific URL.
     Output: JSON-encoded Alexa rankings of URL.
-    Exception raised if domain not found in rankings or does not rank high enough.
+    Exception raised if domain not found in rankings
+              or does not rank high enough.
     """
     url = request.args.get('url')
-    
+
     try:
         rank = get_alexa_xml(url).find(".//REACH").get("RANK")
         delta = get_alexa_xml(url).find(".//RANK").get("DELTA")
@@ -59,7 +47,11 @@ def get_rank():
         }
         return json.dumps(params, indent=2)
     except:
-        params = {'alexa-ranking': {'ranking': 'this domain is not ranked'}}
+        params = {
+            'alexa-ranking': {
+                'ranking': 'this domain is not ranked'
+            }
+        }
         return json.dumps(params, indent=2)
 
 if __name__ == '__main__':
