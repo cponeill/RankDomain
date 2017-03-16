@@ -27,6 +27,10 @@ class RankDomainTestCase(unittest.TestCase):
         response = self.get('/domain_rank?url=google.com')
         self.assertEqual(response.status_code, 200)
 
+    def test_pay_no_success(self, *args):
+        # Get 404 status
+        response = self.get('/')
+        self.assertEqual(response.status_code, 404)
 
 if __name__ == '__main__':
     unittest.main()
